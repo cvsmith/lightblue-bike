@@ -1,20 +1,7 @@
-/*********************************************************************
-This is an example sketch for our Monochrome SHARP Memory Displays
-
-  Pick one up today in the adafruit shop!
-  ------> http://www.adafruit.com/products/1393
-
-These displays use SPI to communicate, 3 pins are required to  
-interface
-
-Adafruit invests time and resources providing this open source code, 
-please support Adafruit and open-source hardware by purchasing 
-products from Adafruit!
-
-Written by Limor Fried/Ladyada  for Adafruit Industries.  
-BSD license, check license.txt for more information
-All text above, and the splash screen must be included in any redistribution
-*********************************************************************/
+/* 
+ * Program should count the number of passes a magnet makes by the sensor,
+ * and display that count on the display, refreshing every 500
+ */
 
 #include <Adafruit_GFX.h>
 #include <Adafruit_SharpMem.h>
@@ -33,7 +20,6 @@ Adafruit_SharpMem display(SCK, MOSI, SS);
 #define BIG_NUM_SIZE 7
 #define LABEL_SIZE 2
 
-int hallState;
 volatile int count = 0;
 
 void setup(void) 
