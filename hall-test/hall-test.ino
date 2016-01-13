@@ -23,6 +23,7 @@ All text above, and the splash screen must be included in any redistribution
 #define SCK 10
 #define MOSI 11
 #define SS 13
+#define HALL 7
 
 Adafruit_SharpMem display(SCK, MOSI, SS);
 
@@ -32,6 +33,8 @@ Adafruit_SharpMem display(SCK, MOSI, SS);
 #define BIG_NUM_SIZE 7
 #define LABEL_SIZE 2
 
+int hallState;
+
 void setup(void) 
 {
   Serial.begin(9600);
@@ -39,26 +42,23 @@ void setup(void)
 
   // Count
   display.setTextColor(BLACK);
-  for (uint8_t i = 0; i < 100; i++) {
-    display.clearDisplay();
-    
-    // Draw big number
-    display.setTextSize(BIG_NUM_SIZE);
-    if (i < 10) display.setCursor(30, 4);
-    else display.setCursor(10, 4);
-    display.println(i, DEC);
-    
-    // Draw little label
-    display.setTextSize(LABEL_SIZE);
-    display.println("    MPH");
-    display.refresh();
-    delay(1000);
-  }
+  display.setTextSize(BIG_NUM_SIZE);
+  display.setCursor(30,4);
 }
 
 void loop(void) 
 {
-  // Screen must be refreshed at least once per second
+  hallState = digitalRead(HALL);
+  display.clearDisplay();
+
+  if (hallState == HIGH) {
+    display.println("ON");
+    Serial.print("ON");
+  } else {
+    Serial.print("OFF");
+    display.println("OFF");
+  }
+  
   display.refresh();
   delay(500);
 }
