@@ -55,7 +55,7 @@ void loop(void)
     start = millis();
   } else if (now - start >= SAMPLE_INTERVAL) {
     Serial.print("count: "); Serial.print(hallCount);
-    spd = ((spd * 0.5) + (hallCount * 1000 * PULSES_PER_S_TO_MPH / SAMPLE_INTERVAL)) / 2;
+    spd = ((spd * 0.5) + (hallCount * 1000 * PULSES_PER_S_TO_MPH / (now - start)) / 2;
     Serial.print(" spd: "); Serial.println(spd);
     count = 0;
     start = millis();
