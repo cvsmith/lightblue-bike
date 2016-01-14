@@ -78,7 +78,7 @@ void loop(void)
   
   // Draw distance
   display.setTextSize(UNIT_SIZE);
-  display.print(" "); display.print(distance, 2); display.print(" MI");
+  display.print(" "); display.print(distance, 2); display.print("MI");
   display.refresh();
 
   delay(SAMPLE_INTERVAL);
